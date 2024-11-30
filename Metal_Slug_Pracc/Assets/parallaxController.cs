@@ -5,7 +5,7 @@ using UnityEngine;
 public class parallaxController : MonoBehaviour
 {
     // Start is called before the first frame update
-    Transform cam;
+    public Transform cam;
     Vector3 camStartPos;
     float distance;
 
@@ -54,7 +54,7 @@ public class parallaxController : MonoBehaviour
     private void LateUpdate()
     {
         distance = cam.position.x - camStartPos.x;
-
+        transform.position = new Vector3(cam.position.x,transform.position.y,0);
         for (int i = 0; i < backgrounds.Length; i++)
         {
             float speed = backSpeed[i] * parallaxSpeed;

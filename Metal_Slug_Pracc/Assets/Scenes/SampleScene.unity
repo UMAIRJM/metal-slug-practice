@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 77054712}
   - component: {fileID: 77054716}
   - component: {fileID: 77054715}
+  - component: {fileID: 77054717}
   m_Layer: 7
   m_Name: MainCharacter
   m_TagString: Untagged
@@ -224,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77054711}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.874075, y: -1.3070405, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
@@ -257,7 +258,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &77054716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -303,6 +304,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17, y: 0.34}
   m_EdgeRadius: 0
+--- !u!114 &77054717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77054711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4bb5e92ea74c624c93263ee784d541e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpForce: 6
+  animator: {fileID: 77054712}
+  cameraTransform: {fileID: 519420032}
 --- !u!1 &229028407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1290,7 @@ Transform:
   m_GameObject: {fileID: 837354974}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1306,7 +1323,7 @@ Transform:
   m_GameObject: {fileID: 1161110213}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.86, z: 0}
+  m_LocalPosition: {x: 0, y: 1.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1329,7 +1346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a3a6c70035ada49a45274686999963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: 0.01
+  cam: {fileID: 519420032}
+  parallaxSpeed: 0.0199
 --- !u!1 &1912369560
 GameObject:
   m_ObjectHideFlags: 0
