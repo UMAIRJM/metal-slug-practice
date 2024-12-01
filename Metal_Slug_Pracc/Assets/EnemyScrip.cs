@@ -28,37 +28,47 @@ public class EnemyScrip : MonoBehaviour
        
         if (mainPlayer != null && !isDEad)
         {
-            Vector2 direction = (mainPlayer.position - transform.position).normalized;
-
-            Vector2 newPosition = Vector2.MoveTowards(transform.position, mainPlayer.position, movementSpeed * Time.deltaTime);
-
-            if(mainPlayer.position.x < transform.position.x)
-            {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 180f, 0));
-                isFacingRight = false;
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0f, 0));
-                isFacingRight = true;
-            }
-            transform.position = newPosition;
+            MoveTowardPLayer();
 
         }
         if(EnemyHeath <=0) {
-            if(deadEnemiesScore.deadEnemiesCounter == 4)
-            {
-                Instantiate(jumpUpPower, transform.position, Quaternion.identity);
-                PlayerHealthController.jumpPowerPotion = true;
-
-            }
-            isDEad = true;
-            animator.SetBool("enemyDead", true);
-            StartCoroutine(destroyEnemyBody());
+            HandleEnemyDeath();
         }
         
     }
 
+
+    public void MoveTowardPLayer()
+    {
+        Vector2 direction = (mainPlayer.position - transform.position).normalized;
+
+        Vector2 newPosition = Vector2.MoveTowards(transform.position, mainPlayer.position, movementSpeed * Time.deltaTime);
+
+        if (mainPlayer.position.x < transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180f, 0));
+            isFacingRight = false;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0f, 0));
+            isFacingRight = true;
+        }
+        transform.position = newPosition;
+    }
+
+    public void HandleEnemyDeath()
+    {
+        if (deadEnemiesScore.deadEnemiesCounter == 4)
+        {
+            Instantiate(jumpUpPower, transform.position, Quaternion.identity);
+            PlayerHealthController.jumpPowerPotion = true;
+
+        }
+        isDEad = true;
+        animator.SetBool("enemyDead", true);
+        StartCoroutine(destroyEnemyBody());
+    }
 
     
      
@@ -76,7 +86,7 @@ public class EnemyScrip : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
             if (!isDEad) {
                 if (isFacingRight)
                 {

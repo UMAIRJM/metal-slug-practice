@@ -12,26 +12,27 @@ public class EnemyGenerator : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(IntantiateAnEnemy());
+            StartCoroutine(IntantiateAnEnemy());
+        
+      
 
     }
 
     // Update is called once per frame
     
 
-    IEnumerator  IntantiateAnEnemy()
+  IEnumerator  IntantiateAnEnemy()
     {
-        while (true)
+        for (int i = 0; i < 15; i++)
         {
-            if (enemyCount <= 7)
-            {
-                yield return new WaitForSeconds(7);
-                int random = Random.Range(0, 8);
-                Instantiate(enemy, point[random].position, Quaternion.identity);
-                //StartCoroutine(IntantiateAnEnemy());
-                enemyCount++;
-            }
+            yield return new WaitForSeconds(10);
+            int random = Random.Range(0, point.Length);
+            Instantiate(enemy, point[random].position, Quaternion.identity);
+            //StartCoroutine(IntantiateAnEnemy());
+            enemyCount++;
         }
+               
+         
         
 
     }

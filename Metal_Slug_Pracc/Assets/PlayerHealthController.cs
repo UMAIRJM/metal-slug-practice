@@ -28,6 +28,7 @@ public class PlayerHealthController : MonoBehaviour
     {
         if(playerHealth < 10)
         {
+            print("player health is: " + playerHealth);
             heartImage[playerHealth].enabled = false;
             
         }
@@ -52,13 +53,7 @@ public class PlayerHealthController : MonoBehaviour
 
 
     //checkking triggers and collision and performing specific tasks accordingly
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "jumpPotion")
-        {
-            jumpPowerPotion = true;
-        }
-    }
+  
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "jumpPotion")
