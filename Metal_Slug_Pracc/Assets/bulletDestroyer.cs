@@ -13,6 +13,11 @@ public class bulletDestroyer : MonoBehaviour
         }
         else
         {
+            if(collision.gameObject.tag == "enemy")
+            {
+                EnemyScrip es  = collision.gameObject.GetComponent<EnemyScrip>();
+                es.EnemyHeath--;
+            }
             Destroy(gameObject);
         }
     }
