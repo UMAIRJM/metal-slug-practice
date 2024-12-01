@@ -14,6 +14,7 @@ public class EnemyScrip : MonoBehaviour
     public GameObject enemyBullet;
     public float bulletSpeed = 8f;
     private bool isFacingRight = true;
+    public GameObject jumpUpPower;
     public void Start()
     {
         animator = GetComponent<Animator>();
@@ -51,6 +52,12 @@ public class EnemyScrip : MonoBehaviour
 
         }
         if(EnemyHeath <=0) {
+            if(deadEnemiesScore.deadEnemiesCounter == 4)
+            {
+                Instantiate(jumpUpPower, transform.position, Quaternion.identity);
+                PlayerHealthController.jumpPowerPotion = true;
+
+            }
             isDEad = true;
             animator.SetBool("enemyDead", true);
             StartCoroutine(destroyEnemyBody());
@@ -59,12 +66,14 @@ public class EnemyScrip : MonoBehaviour
     }
 
 
-
+    
      
 
     IEnumerator destroyEnemyBody()
     {
         yield return new WaitForSeconds(1);
+        deadEnemiesScore.deadEnemiesCounter++;
+
         Destroy(gameObject);
     }
 

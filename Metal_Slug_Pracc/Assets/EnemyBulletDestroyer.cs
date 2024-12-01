@@ -6,7 +6,7 @@ public class EnemyBulletDestroyer : MonoBehaviour
 {
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "enemy")
+        if (collision.gameObject.name == gameObject.name)
         {
             print("it is enemy");
         }
@@ -14,7 +14,7 @@ public class EnemyBulletDestroyer : MonoBehaviour
         {
             if(collision.gameObject.tag == "player") {
 
-                PlayerHealthController.playerHealth--;
+                PlayerHealthController.playerHealth--;  
             }
 
             

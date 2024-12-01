@@ -23,6 +23,10 @@ public class PLayerMovement : MonoBehaviour
     }
     void Update()
     {
+        if (PlayerHealthController.jumpPowerPotion)
+        {
+            jumpForce = 11f;
+        }
         HandleMovement();
         HandleJump();
         HandleCrouch();
