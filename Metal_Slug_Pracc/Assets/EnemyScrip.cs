@@ -84,14 +84,13 @@ public class EnemyScrip : MonoBehaviour
     //shooting method of enemy shooting after every three seconds
     IEnumerator shoot()
     {
-        while(true)
-        {
-            yield return new WaitForSeconds(1);
+        
+            yield return new WaitForSeconds(0.5f);
             if (!isDEad) {
                 if (isFacingRight)
                 {
                     Vector2 position = transform.position;
-                    position.x += 0.5f;
+                    position.x += 0.2f;
                     GameObject bullet = Instantiate(enemyBullet, position, Quaternion.identity);
                     Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
                     bulletRb.velocity = new Vector2(bulletSpeed, 0);
@@ -101,7 +100,7 @@ public class EnemyScrip : MonoBehaviour
                 else
                 {
                     Vector2 position = transform.position;
-                    position.x -= 0.5f;
+                    position.x -= 0.2f;
                     GameObject bullet = Instantiate(enemyBullet, position, Quaternion.identity);
                     Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
                     print("I am facing left");
@@ -109,9 +108,11 @@ public class EnemyScrip : MonoBehaviour
 
                     // Move left
                 }
+            StartCoroutine(shoot());
             }
+
              
-        }
+        
     }
 }
 
