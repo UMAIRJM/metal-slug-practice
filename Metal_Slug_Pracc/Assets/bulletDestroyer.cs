@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bulletDestroyer : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //this code is attached to player bullet detecting collision and performing certain action acooringly.
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "player")

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainMenuScript : MonoBehaviour
     
 {
+    //my main menu script only contain label which will show if player completed the game
     public Text GameLabel;
 
     public void Start()
@@ -14,6 +15,7 @@ public class MainMenuScript : MonoBehaviour
         GameLabel.text = "";
     }
 
+    //checking whether player has won the game or not
     public void Update()
     {
         if (PlayerHealthController.GameWon)
@@ -25,6 +27,7 @@ public class MainMenuScript : MonoBehaviour
             GameLabel.text = "";
         }
     }
+    //loading game scene
     public void loadGameScene()
     {
         GameLabel.text = "";

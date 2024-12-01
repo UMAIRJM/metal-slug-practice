@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class parallaxController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //this script is responsible for parallax bakcground movement we have taken all background reference in this script and mange their speed accordingly
+    //by measuring their distance from camera far background are slower as compare to near one
     public Transform cam;
     Vector3 camStartPos;
     float distance;
@@ -35,6 +36,8 @@ public class parallaxController : MonoBehaviour
         BackSpeedCalculate(backCount);
     }
 
+
+    //calculating back speed
     void BackSpeedCalculate(int backCount)
     {
         for (int i = 0; i < backCount; i++)

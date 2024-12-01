@@ -5,11 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PLayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 6f;
+
+    //this whole script is responsible for player movement I am using Unity Input system to get horizontal and vertical inputs and perform actions accordingly.
+
     public Animator animator;
     public Transform cameraTransform;
     private Rigidbody2D rb;
+
+    public float moveSpeed = 5f;
+    public float jumpForce = 6f;
     private bool isCrouching = false;
     private Vector3 originalScale;
     private Vector3 crouchScale;
@@ -32,14 +36,16 @@ public class PLayerMovement : MonoBehaviour
         HandleCrouch();
         FollowPlayerWithCamera();
     }
+
+    //this function is handling player movemtn right and left
     private void HandleMovement()
     {
         float move = Input.GetAxis("Horizontal");
 
-        // Apply movement
+        
         Vector2 velocity = new Vector2(move * moveSpeed, rb.velocity.y);
         rb.velocity = velocity;
-        //rotating player left or right based on the horizontal input
+        
         if (move > 0)
         {
             transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
@@ -48,17 +54,18 @@ public class PLayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
         }
-        if (Mathf.Abs(move) > 0.1f) // If the player is moving
+        if (Mathf.Abs(move) > 0.1f) 
         {
             animator.SetBool("isRunning", true);
         }
-        else // If the player is not movingx
+        else 
         {
             animator.SetBool("isRunning", false);
         }
 
     }
 
+    //for handling player jump using space button
     private void HandleJump()
     {
         if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.01f)
@@ -67,21 +74,25 @@ public class PLayerMovement : MonoBehaviour
         }
     }
 
+    //for handling player crouch function
     private void HandleCrouch()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             isCrouching = true;
             transform.localScale = crouchScale;
-            // animator.SetBool("IsCrouching", true);
+            
         }
         if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))
         {
             isCrouching = false;
             transform.localScale = originalScale;
-            // animator.SetBool("IsCrouching", false);
+            
         }
     }
+
+
+    //this function is responsible for following the camera to player.
     private void FollowPlayerWithCamera()
     {
         Vector3 cameraPosition = cameraTransform.position;

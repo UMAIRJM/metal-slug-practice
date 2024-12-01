@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class deadEnemiesScore : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //this script is only contain static variable and is resposible for counting deatdenemies to display player score
     public static int deadEnemiesCounter = 0;
     public Text deadEnemiesText;
     void Start()

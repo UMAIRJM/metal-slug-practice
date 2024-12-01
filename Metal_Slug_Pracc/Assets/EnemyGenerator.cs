@@ -5,9 +5,10 @@ using UnityEngine.PlayerLoop;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //this script is generating enemies from 9 fixed point each point is picked randomly and enemy is generated on picked poit 
     public Transform[] point  = new Transform[9];
     public GameObject enemy;
+    public static int enemyCount = 0;
 
     void Start()
     {
@@ -20,10 +21,18 @@ public class EnemyGenerator : MonoBehaviour
 
     IEnumerator  IntantiateAnEnemy()
     {
-        yield return new WaitForSeconds(7);
-        int random = Random.Range(0, 8);
-        Instantiate(enemy, point[random].position, Quaternion.identity);
-        StartCoroutine(IntantiateAnEnemy());
+        while (true)
+        {
+            if (enemyCount <= 7)
+            {
+                yield return new WaitForSeconds(7);
+                int random = Random.Range(0, 8);
+                Instantiate(enemy, point[random].position, Quaternion.identity);
+                //StartCoroutine(IntantiateAnEnemy());
+                enemyCount++;
+            }
+        }
+        
 
     }
 }

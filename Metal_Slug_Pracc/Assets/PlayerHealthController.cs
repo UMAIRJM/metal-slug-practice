@@ -7,11 +7,13 @@ using UnityEngine.UI;
 
 public class PlayerHealthController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public static int playerHealth = 10;
+    //this script is maintaining player health and also responsible for initializing jumper potion when we killed 5 enemies
+
     public Image[] heartImage = new Image[10];
     public Animator animator;
     public Transform intialPosition;
+
+    public static int playerHealth = 10;
     public static bool jumpPowerPotion =false;
     public static bool GameWon = false;
 
@@ -37,15 +39,19 @@ public class PlayerHealthController : MonoBehaviour
         
     }
 
+    //will load main menu in case player is dead and reset all variables.
     IEnumerator loadMainScene()
     {
         yield return new WaitForSeconds(2);
         deadEnemiesScore.deadEnemiesCounter = 0;
         playerHealth = 10;
         jumpPowerPotion = false;
+        EnemyGenerator.enemyCount = 0;
         SceneManager.LoadScene("Main");
     }
 
+
+    //checkking triggers and collision and performing specific tasks accordingly
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "jumpPotion")

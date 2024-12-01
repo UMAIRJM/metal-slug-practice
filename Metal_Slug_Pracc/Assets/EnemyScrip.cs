@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class EnemyScrip : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Transform mainPlayer; 
-    public float movementSpeed = 2f; 
-    //public bool stoppingDistance  = false;
-    public  int EnemyHeath = 4;
-    public bool isDEad = false;
+    //this script is attached to enemy responsible for enemy animations enemy shooting and initializing of jump potion etc.
+    public Transform mainPlayer;
     public Animator animator;
     public GameObject enemyBullet;
+    public GameObject jumpUpPower;
+
+
+    public float movementSpeed = 2f; 
+    public  int EnemyHeath = 4;
+    public bool isDEad = false;
     public float bulletSpeed = 8f;
     private bool isFacingRight = true;
-    public GameObject jumpUpPower;
+    
     public void Start()
     {
         animator = GetComponent<Animator>();
@@ -23,15 +25,7 @@ public class EnemyScrip : MonoBehaviour
     void Update()
     {
         
-        /* float distance = Vector3.Distance(mainPlayer.position, transform.position);
-         if (distance < 5f)
-         {
-             stoppingDistance = true;
-         }
-         else
-         {
-             stoppingDistance = false;
-         }*/
+       
         if (mainPlayer != null && !isDEad)
         {
             Vector2 direction = (mainPlayer.position - transform.position).normalized;
@@ -68,15 +62,16 @@ public class EnemyScrip : MonoBehaviour
 
     
      
-
+    //detroying enemy body if dead in a coroutine
     IEnumerator destroyEnemyBody()
     {
         yield return new WaitForSeconds(1);
         deadEnemiesScore.deadEnemiesCounter++;
-
+        EnemyGenerator.enemyCount--;
         Destroy(gameObject);
     }
 
+    //shooting method of enemy shooting after every three seconds
     IEnumerator shoot()
     {
         while(true)

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBulletDestroyer : MonoBehaviour
 {
+    //just like player bullet destroyerer this is enemy bullet destroyer.
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == gameObject.name)
