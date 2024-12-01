@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealthController : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerHealthController : MonoBehaviour
     public Animator animator;
     public Transform intialPosition;
     public static bool jumpPowerPotion =false;
+    public static bool GameWon = false;
 
     
     void Start()
@@ -29,8 +31,19 @@ public class PlayerHealthController : MonoBehaviour
         }
         if(playerHealth <= 0) {
             animator.SetBool("isPlayerDead", true);
+            
+            StartCoroutine(loadMainScene());
         }
         
+    }
+
+    IEnumerator loadMainScene()
+    {
+        yield return new WaitForSeconds(2);
+        deadEnemiesScore.deadEnemiesCounter = 0;
+        playerHealth = 10;
+        jumpPowerPotion = false;
+        SceneManager.LoadScene("Main");
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -59,6 +72,11 @@ public class PlayerHealthController : MonoBehaviour
             print("you are colliding with obstacles");
             playerHealth--;
             transform.position = intialPosition.position;
+        }
+        if(collision.gameObject.tag == "win")
+        {
+            GameWon = true;
+            StartCoroutine(loadMainScene());
         }
     }
 }
